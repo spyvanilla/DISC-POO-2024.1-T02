@@ -1,4 +1,4 @@
-# Trabalho 01 de POO - Programação orientada a objetos, 2024.1
+# Trabalho 02 de POO - Programação orientada a objetos, 2024.1
 
    ### Equipe:
      
