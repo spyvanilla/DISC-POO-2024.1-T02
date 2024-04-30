@@ -1,17 +1,63 @@
 package br.edu.principal;
 
+import java.util.Scanner;
+
 public class Principal {
     public static void main(String[] args) {
-        int num1 = 0;
-        int num2 = 1;
-        System.out.println(num1);
-        System.out.println(num2);
+        Scanner scanner = new Scanner(System.in);
 
-        for (int cont = 3; cont <= 8; cont++) {
-            int res = num1 + num2;
-            System.out.println(res);
-            num1 = num2;
-            num2 = res;
+        System.out.println("Digite um valor para A:");
+        double A = scanner.nextDouble();
+
+        System.out.println("Digite um valor para B:");
+        double B = scanner.nextDouble();
+
+        System.out.println("Digite um valor para C:");
+        double C = scanner.nextDouble();
+
+        System.out.println("Digite um valor para I (1, 2 ou 3):");
+        int I = scanner.nextInt();
+
+        scanner.close();
+
+        if (I == 1) {
+            if (A < B && A < C) {
+                if (B < C) System.out.println("A ordem crescente dos números é: " + A + " - " + B + " - " + C);
+                else System.out.println("A ordem crescente dos números é: " + A + " - " + C + " - " + B);
+            }
+
+            if (B < A && B < C) {
+                if (A < C) System.out.println("A ordem crescente dos números é: " + B + " - " + A + " - " + C);
+                else System.out.println("A ordem crescente dos números é: " + B + " - " + C + " - " + A);
+            }
+
+            if (C < A && C < B) {
+                if (A < B) System.out.println("A ordem crescente dos números é: " + C + " - " + A + " - " + B);
+                else System.out.println("A ordem crescente dos números é: " + C + " - " + B + " - " + A);
+            }
+        }
+
+        if (I == 2) {
+            if (A > B && A > C) {
+                if (B > C) System.out.println("A ordem decrescente dos números é: " + A + " - " + B + " - " + C);
+                else System.out.println("A ordem decrescente dos números é: " + A + " - " + C + " - " + B);
+            }
+
+            if (B > A && B > C) {
+                if (A > C) System.out.println("A ordem decrescente dos números é: " + B + " - " + A + " - " + C);
+                else System.out.println("A ordem decrescente dos números é: " + B + " - " + C + " - " + A);
+            }
+
+            if (C > A && C > B) {
+                if (A > B) System.out.println("A ordem decrescente dos números é: " + C + " - " + A + " - " + B);
+                else System.out.println("A ordem decrescente dos números é: " + C + " - " + B + " - " + A);
+            }
+        }
+
+        if (I == 3) {
+            if (A > B && A > C) System.out.println(B + " - " + A + " - " + C);
+            if (B > A && B > C) System.out.println(A + " - " + B + " - " + C);
+            if (C > A && C > B) System.out.println(A + " - " + C + " - " + B);
         }
     }
 }

@@ -4,60 +4,31 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        double maior = 0;
-        double menor = 0;
-        double soma_par = 0;
+        double pre_carga = 0;
+        double imposto = 0;
 
         Scanner scanner = new Scanner(System.in);
-        double num = scanner.nextDouble();
-
-        int qtd = 0;
-        int qtd_par = 0;
-        int qtd_impar = 0;
-        double soma = 0;
-
-        while (num != 30000) {
-            if (qtd == 0) {
-                maior = num;
-                menor = num;
-            }
-
-            else {
-                if (num > maior) maior = num;
-                if (num < menor) menor = num;
-            }
-
-            soma += num;
-            qtd++;
-
-            if (num % 2 == 0) {
-                soma_par += num;
-                qtd_par++;
-            }
-            else qtd_impar++;
-
-            num = scanner.nextDouble();
-        }
+        int cod_est = scanner.nextInt();
+        double peso_toneladas = scanner.nextDouble();
+        int cod_carga = scanner.nextInt();
         scanner.close();
 
-        if (qtd == 0) System.out.println("Nenhum número digitado");
-        else {
-            double media = soma / qtd;
+        double peso_quilos = peso_toneladas * 1000;
+        System.out.println(peso_quilos);
 
-            System.out.println(soma);
-            System.out.println(qtd);
-            System.out.println(media);
-            System.out.println(maior);
-            System.out.println(menor);
+        if (cod_carga >= 10 && cod_carga <= 20) pre_carga = 100 * peso_quilos;
+        if (cod_carga >= 21 && cod_carga <= 30) pre_carga = 250 * peso_quilos;
+        if (cod_carga >= 31 && cod_carga <= 40) pre_carga = 340 * peso_quilos;
+        System.out.println(pre_carga);
 
-            if (qtd_par == 0) System.out.println("Nenhum número par");
-            else {
-                double media_par = soma_par / qtd_par;
-                System.out.println(media_par);
-            }
+        if (cod_est == 1) imposto = 35 / 100 * pre_carga;
+        if (cod_est == 2) imposto = 25 / 100 * pre_carga;
+        if (cod_est == 3) imposto = 15 / 100 * pre_carga;
+        if (cod_est == 4) imposto = 5 / 100 * pre_carga;
+        if (cod_est == 5) imposto = 0;
+        System.out.println(imposto);
 
-            float perc = qtd_impar * 100 / qtd;
-            System.out.println(perc);
-        }
+        double valor_total = pre_carga + imposto;
+        System.out.println(valor_total);
     }
 }

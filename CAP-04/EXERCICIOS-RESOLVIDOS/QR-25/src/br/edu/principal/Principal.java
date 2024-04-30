@@ -4,52 +4,27 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        int origem = 0;
-        String meio_t = "";
-        String carga = "";
-        double imp = 0;
-        int transp = 0;
-        double seguro = 0;
-        double total_imp = 0;
+        int voltas = 0;
+        String sentido = "";
 
         Scanner scanner = new Scanner(System.in);
-        double preco = scanner.nextDouble();
+        double angulo = scanner.nextDouble();
+        scanner.close();
 
-        while (preco > 0) {
-            origem = scanner.nextInt();
-            meio_t = scanner.nextLine();
-            carga = scanner.nextLine();
-
-            if (preco <= 100) imp = preco * 5 / 100;
-            else imp = preco * 10 / 100;
-
-            if (carga == "S") {
-                if (origem == 1) transp = 50;
-                if (origem == 2) transp = 21;
-                if (origem == 3) transp = 24;
-            }
-
-            if (carga == "N") {
-                if (origem == 1) transp = 12;
-                if (origem == 2) transp = 21;
-                if (origem == 3) transp = 60;
-            }
-
-            if (origem == 2 || meio_t == "A") seguro = preco / 2;
-            else seguro = 0;
-
-            double precoFinal = preco + imp + transp + seguro;
-            total_imp += imp;
-
-            System.out.println(imp);
-            System.out.println(transp);
-            System.out.println(seguro);
-            System.out.println(precoFinal);
-
-            preco = scanner.nextDouble();
+        if (angulo > 360 || angulo < -360) {
+            voltas = (int) angulo / 360;
+            angulo = angulo % 360;
         }
 
-        scanner.close();
-        System.out.println(total_imp);
+        if (angulo == 0 || angulo == 90 || angulo == 180 || angulo == 270 || angulo == 360 || angulo == -90 || angulo == -180 || angulo == -270 || angulo == -360) System.out.println("Está em cima de algum dos eixos");
+        if ((angulo > 0 && angulo < 90) || (angulo < -270 && angulo > -360)) System.out.println("1° Quadrante");
+        if ((angulo > 90 && angulo < 180) || (angulo < -180 && angulo > -270)) System.out.println("2° Quadrante");
+        if ((angulo > 180 && angulo < 270) || (angulo < -90 && angulo > -180)) System.out.println("3° Quadrante");
+        if ((angulo > 270 && angulo < 360) || (angulo < 0 && angulo > -90)) System.out.println("4° Quadrante");
+    
+        if (angulo < 0) sentido = "horário";
+        else sentido = "anti-horário";
+
+        System.out.println(voltas + " volta(s) no sentido " + sentido);
     }
 }

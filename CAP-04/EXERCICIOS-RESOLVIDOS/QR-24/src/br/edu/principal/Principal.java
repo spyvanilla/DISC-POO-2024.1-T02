@@ -4,50 +4,56 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        double sal = 0;
-        double imp = 0;
-        int aum = 0;
+        float valor_adic = 0;
+        double imposto = 0;
+        double desconto = 0;
 
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("MENU DE OPÇÕES");
-        System.out.println("1- Imposto");
-        System.out.println("2- Novo Salário");
-        System.out.println("3- Classificação");
-        System.out.println("4- Finalizar o programa");
-        System.out.println("Digite a opção desejada");
-
-        int op = scanner.nextInt();
-        if (op > 4 || op < 1) System.out.println("Opção inválida");
-
-        if (op == 1) {
-            sal = scanner.nextDouble();
-
-            if (sal < 500) imp = sal * 5 / 100;
-            if (sal >= 500 && sal <= 850) imp = sal * 10 / 100;
-            if (sal > 850) imp = sal * 15 / 100;
-            System.out.println(imp);
-        }
-
-        if (op == 2) {
-            sal = scanner.nextDouble();
-
-            if (sal > 1500) aum = 25;
-            if (sal >= 750 && sal <= 1500) aum = 50;
-            if (sal >= 450 && sal < 750) aum = 75;
-            if (sal < 450) aum = 100;
-
-            double novo_sal = sal + aum;
-            System.out.println(novo_sal);
-        }
-
-        if (op == 3) {
-            sal = scanner.nextDouble();
-            
-            if (sal <= 700) System.out.println("Mal Remunerado");
-            else System.out.println("Bem Remunerado");
-        }
-
+        double pre = scanner.nextDouble();
+        String tipo = scanner.nextLine();
+        String refrig = scanner.nextLine();
         scanner.close();
+
+        if (refrig == "N") {
+            if (tipo == "A") {
+                if (pre < 15) valor_adic = 2;
+                else valor_adic = 5; 
+            }
+
+            if (tipo == "L") {
+                if (pre < 10) valor_adic = 1.5f;
+                else valor_adic = 2.5f;
+            }
+
+            if (tipo == "V") {
+                if (pre < 30) valor_adic = 3;
+                else valor_adic = 2.5f;
+            }
+        }
+
+        else {
+            if (tipo == "A") valor_adic = 8;
+            if (tipo == "L") valor_adic = 0;
+            if (tipo == "V") valor_adic = 0;
+        }
+        System.out.println(valor_adic);
+
+        if (pre < 25) imposto = 5 / 100 * pre;
+        else imposto = 8 / 100 * pre;
+        System.out.println(imposto);
+
+        double pre_custo = pre + imposto;
+        System.out.println(pre_custo);
+
+        if (tipo != "A" && refrig != "S") desconto = 3 / 100 * pre_custo;
+        else desconto = 0;
+        System.out.println(desconto);
+
+        double novo_pre = pre_custo + valor_adic - desconto;
+        System.out.println(novo_pre);
+
+        if (novo_pre <= 50) System.out.println("Barato");
+        else if (novo_pre < 100) System.out.println("Normal");
+        else System.out.println("Caro");
     }
 }

@@ -1,46 +1,36 @@
 package br.edu.principal;
 
-import java.util.Scanner;
+import java.util.Date;
+import java.util.Calendar;
 
 public class Principal {
     public static void main(String[] args) {
-        double total_classe = 0;
-        int tr = 0;
-        int te = 0;
-        int ta = 0;
+        int dia, mes, ano, hora, min;
+        Calendar cal = Calendar.getInstance();
+        Date d = new Date();
+        cal.setTime(d);
 
-        Scanner scanner = new Scanner(System.in);
+        dia = cal.get(Calendar.DAY_OF_MONTH);
+        mes = cal.get(Calendar.MONTH) + 1;
+        ano = cal.get(Calendar.YEAR);
+        hora = cal.get(Calendar.HOUR);
+        min = cal.get(Calendar.MINUTE);
+        System.out.println("Data atual: " + dia + "/" + mes + "/" + ano + " - ");
 
-        for (int cont = 1; cont <= 6; cont++) {
-            double n1 = scanner.nextDouble();
-            double n2 = scanner.nextDouble();
-            double media = (n1 + n2) / 2;
-            System.out.println(media);
-
-            if (media <= 3) {
-                tr++;
-                System.out.println("Reprovado");
-            }
-
-            if (media > 3 && media < 7) {
-                te++;
-                System.out.println("Exame");
-            }
-
-            if (media >= 7) {
-                ta++;
-                System.out.println("Aprovado");
-            }
-
-            total_classe += media;
-        }
-
-        scanner.close();
-        System.out.println(tr);
-        System.out.println(te);
-        System.out.println(ta);
-
-        double media_classe = total_classe / 6;
-        System.out.println(media_classe);
+        if (mes == 1) System.out.println("janeiro");
+        if (mes == 2) System.out.println("fevereiro");
+        if (mes == 3) System.out.println("março");
+        if (mes == 4) System.out.println("abril");
+        if (mes == 5) System.out.println("maio");
+        if (mes == 6) System.out.println("junho");
+        if (mes == 7) System.out.println("julho");
+        if (mes == 8) System.out.println("agosto");
+        if (mes == 9) System.out.println("setembro");
+        if (mes == 10) System.out.println("outubro");
+        if (mes == 11) System.out.println("novembro");
+        if (mes == 12) System.out.println("dezembro");
+    
+        System.out.println("Hora atual: ");
+        System.out.println(hora + ":" + min);
     }
 }

@@ -5,33 +5,36 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int num_termos = scanner.nextInt();
-        scanner.close();        
 
-        int num1 = 2;
-        int num2 = 7;
-        int num3 = 3;
+        System.out.println("MENU");
+        System.out.println("1- Somar dois números");
+        System.out.println("2- Raíz quadrada de um número");
+        System.out.println("Digite sua opção: ");
+        int op = scanner.nextInt();
 
-        System.out.println(num1);
-        System.out.println(num2);
-        System.out.println(num3);
-        int i = 4;
+        if (op == 1) {
+            System.out.println("Digite um valor para o primeiro número:");
+            double num1 = scanner.nextInt();
 
-        while (i != num_termos) {
-            num1 = num1 * 2;
-            System.out.println(num1);
-            i++;
+            System.out.println("Digite um valor para o segundo número:");
+            double num2 = scanner.nextInt();
 
-            if (i != num_termos) {
-                num2 = num2 * 3;
-                System.out.println(num2);
-                i++;
-
-                if (i != num_termos) {
-                    num3 = num3 * 4;
-                    i++;
-                }
-            }
+            double soma = num1 + num2;
+            System.out.println("A soma de " + num1 + " e " + num2 + " é " + soma);
         }
+
+        if (op == 2) {
+            System.out.println("Digite um valor: ");
+            double num1 = scanner.nextInt();
+
+            double raiz = Math.sqrt(num1);
+            System.out.println("A raiz quadrada de " + num1 + " é " + raiz);
+        }
+
+        if (op != 1 && op != 2) {
+            System.out.println("Opção inválida!");
+        }
+
+        scanner.close();
     }
 }

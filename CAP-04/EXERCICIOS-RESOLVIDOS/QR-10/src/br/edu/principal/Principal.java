@@ -4,37 +4,40 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        double media_altura = 0;
-
-        int qtde = 0;
-        int tot80 = 0;
         Scanner scanner = new Scanner(System.in);
 
-        for (int cont_time = 1; cont_time <= 5; cont_time++) {
-            double media_idade = 0;
+        System.out.println("Digite a primeira data");
+        System.out.println("dia (dd): ");
+        int d1 = scanner.nextInt();
 
-            for (int cont_jog = 1; cont_jog <= 11; cont_jog++) {
-                double idade = scanner.nextDouble();
-                double peso = scanner.nextDouble();
-                double alt = scanner.nextDouble();
+        System.out.println("mês (mm): ");
+        int m1 = scanner.nextInt();
 
-                if (idade < 18) qtde++;
-                media_idade += idade;
-                media_altura += alt;
+        System.out.println("ano (aaaa): ");
+        int a1 = scanner.nextInt();
 
-                if (peso > 80) tot80++;
-            }
+        System.out.println("Digite a segunda data");
+        System.out.println("dia (dd): ");
+        int d2 = scanner.nextInt();
 
-            media_idade /= 11;
-            System.out.println(media_idade);
-        }
+        System.out.println("mês (mm): ");
+        int m2 = scanner.nextInt();
+
+        System.out.println("ano (aaaa): ");
+        int a2 = scanner.nextInt();
 
         scanner.close();
-        media_altura /= 55;
-        float porc = tot80 * 100 / 55;
 
-        System.out.println(qtde);
-        System.out.println(media_altura);
-        System.out.println(porc);
+        if (a1 > a2) System.out.println("A maior data é " + d1 + "-" + m1 + "-" + a1);
+        else if (a1 < a2) System.out.println("A maior data é " + d2 + "-" + m2 + "-" + a2);
+        else {
+            if (m1 > m2) System.out.println("A maior data é " + d1 + "-" + m1 + "-" + a1);
+            else if (m1 < m2) System.out.println("A maior data é " + d2 + "-" + m2 + "-" + a2);
+            else {
+                if (d1 > d2) System.out.println("A maior data é " + d1 + "-" + m1 + "-" + a1);
+                else if (d1 < d2) System.out.println("A maior data é " + d2 + "-" + m2 + "-" + a2);
+                else System.out.println("As datas são iguais !");
+            }
+        }
     }
 }

@@ -4,59 +4,37 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-        double menor_idade = 0;
+        double imposto = 0;
+        int grat = 0;
 
         Scanner scanner = new Scanner(System.in);
-        double idade = scanner.nextDouble();
-
-        int tot = 0;
-        int tot_f = 0;
-        int tot_m = 0;
-        double soma1 = 0;
-        int cont_m1 = 0;
-        int cont_m2 = 0;
-        int cont_f1 = 0;
-
-        while (idade != 0) {
-            String sexo = scanner.nextLine();
-            String exp = scanner.nextLine();
-
-            if (sexo == "F" && exp == "S") {
-                if (tot == 0) {
-                    menor_idade = idade;
-                    tot = 1;
-                }
-                else if (idade < menor_idade) menor_idade = idade;
-            }
-            if (sexo == "M") tot_m++;
-            if (sexo == "F") tot_f++;
-            if (sexo == "F" && idade < 21 && exp == "S") cont_f1++;
-            if (sexo == "M" && idade > 45) cont_m1++;
-            if (sexo == "M" && exp == "S") {
-                soma1 += idade;
-                cont_m2++;
-            }
-
-            idade = scanner.nextDouble();
-        }
-
+        double sal_base = scanner.nextDouble();
+        double tempo = scanner.nextDouble();
         scanner.close();
-        System.out.println(tot_f);
-        System.out.println(tot_m);
 
-        if (cont_m2 == 0) System.out.println("Nenhum homem com experiência");
-        else {
-            double media_idade = soma1 / cont_m2;
-            System.out.println(media_idade);
+        if (sal_base < 200) imposto = 0;
+        else if (sal_base <= 450) imposto = 3 / 100 * sal_base;
+        else if (sal_base < 700) imposto = 8 / 100 * sal_base;
+        else imposto = 12 / 100 * sal_base;
+        System.out.println(imposto);
+
+        if (sal_base > 500) {
+            if (tempo <= 3) grat = 20;
+            else grat = 30;
         }
 
-        if (tot_m == 0) System.out.println("Nenhum homem");
         else {
-            float perc = cont_m1 * 100 / tot_m;
-            System.out.println(perc);
+            if (tempo <= 3) grat = 23;
+            else if (tempo < 6) grat = 35;
+            else grat = 33;
         }
+        System.out.println(grat);
 
-        System.out.println(cont_f1);
-        System.out.println(menor_idade);
+        double sal_liq = sal_base - imposto + grat;
+        System.out.println(sal_liq);
+
+        if (sal_liq <= 350) System.out.println("Classificação A");
+        else if (sal_liq < 600) System.out.println("Classificação B");
+        else System.out.println("Classificação C");
     }
 }
